@@ -1,0 +1,11 @@
+{
+  "name": "service_and_sales_backend",
+  "version": "1.0.0",
+  "description": "Backend of ERP for service and sales",
+  "scripts": {
+    "server:start": "node server/index.js"
+  },
+  "repository": "https://github.com/aykaton/service_and_sales",
+  "author": "AYK",
+  "license": "MIT"
+}
