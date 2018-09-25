@@ -10,35 +10,35 @@ services:
     working_dir: /src/service_and_sales/backend
     # env_file:
       # - .env
-    # environment: &env_backend_base
-      # DB_PROVIDER: postgres
-      # DB_HOST: postgres
-      # DB_PORT: 5432
-      # DB_NAME: service_and_sales
-      # DB_USER: admin
-      # DB_PASSWORD: admin_password
-    # depends_on:
-      # - postgres
+    environment: &env_backend_base
+      DB_PROVIDER: postgres
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: service_and_sales
+      DB_USER: admin
+      DB_PASSWORD: admin_password
+    depends_on:
+      - postgres
     expose:
       - 8080
-    # command: mkdir test
+    command: yarn run server:start
 
-  # postgres:
-    # image: postgres:9.6-alpine
-    # volumes:
-      # - postgres_db_data:/var/lib/postgresql/data/
-      # - ./postgresql.conf:/etc/postgresql/postgresql.conf
-    # restart: always
-    # ports:
-      # - '5432:5432'
-    # logging:
-      # driver: none
-    # environment:
-      # - POSTGRES_DB=sands
-      # - POSTGRES_USER=admin
-      # - POSTGRES_PASSWORD=admin_password
-    # command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+  postgres:
+    image: postgres:9.6-alpine
+    volumes:
+      - postgres_db_data:/var/lib/postgresql/data/
+      - ./postgresql.conf:/etc/postgresql/postgresql.conf
+    restart: always
+    ports:
+      - '5432:5432'
+    logging:
+      driver: none
+    environment:
+      - POSTGRES_DB=service_and_sales
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin_password
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
 
 volumes:
-  # postgres_db_data:
+  postgres_db_data:
   backend_node_modules:

@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "Backend of ERP for service and sales",
   "scripts": {
-    "server:start": "node server/index.js"
+    "server:start": "nodemon server/index.js"
   },
   "repository": "https://github.com/aykaton/service_and_sales",
   "author": "AYK",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.18.4"
+  }
 }
