@@ -1,0 +1,5 @@
+{
+	"exec":"babel-node",
+	"delay": 1000,
+	"legacyWatch": true
+}

@@ -8,6 +8,8 @@ services:
       - ./backend:/src/service_and_sales/backend
       - backend_node_modules:/src/service_and_sales/backend/node_modules
     working_dir: /src/service_and_sales/backend
+    ports:
+      - '8080:8080'
     # env_file:
       # - .env
     environment: &env_backend_base
