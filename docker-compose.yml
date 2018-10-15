@@ -13,7 +13,7 @@ services:
     # env_file:
       # - .env
     environment: &env_backend_base
-      DB_PROVIDER: postgres
+      DB_DIALECT: postgres
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: service_and_sales

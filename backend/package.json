@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "Backend of ERP for service and sales",
   "scripts": {
+		"db:sequelize": "",
+    "db:create": "babel-node ./db/scripts/create.js",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:seed": "node_modules/.bin/sequelize db:seed:all",
+    "db:setup": "yarn run db:create && yarn run db:migrate && yarn run db:seed",
     "server:start": "nodemon server/index.js"
   },
   "repository": "https://github.com/aykaton/service_and_sales",
@@ -15,6 +20,12 @@
   },
   "dependencies": {
     "babel-core": "^6.26.3",
-    "express": "^4.16.3"
+    "crypto": "^1.0.1",
+    "express": "^4.16.3",
+    "pg": "^7.5.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.39.0",
+    "sequelize-cli": "^4.1.1",
+    "winston": "^3.1.0"
   }
 }

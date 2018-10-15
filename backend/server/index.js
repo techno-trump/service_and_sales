@@ -1,12 +1,15 @@
 //import express from 'express';
 //import http from 'http';
-const express = require('express');
+import express from 'express';
+import logger from '../logger';
+import db from '../db';
 
-console.log('starting');
+logger.info('Application started');
+
+// db.sequelize.sync({ force: true, logging: console.log });
 
 const app = express();
 
 app.get('/', (req, res) => { res.send('ok') });
 
-app.listen(8080, () => console.log('listening'));
-//http.createServer(app).listen(8080, 'localhost', () => console.log('listening'));
+app.listen(8080, () => logger.info('Listening'));
