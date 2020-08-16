@@ -1,6 +1,35 @@
 version: "2"
 
 services:
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    logging:
+      driver: none
+    command: /bin/sh -c "cp -f /etc/nginx/conf.d/nginx.conf /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+  frontend:
+    build:
+      context: frontend
+    volumes:
+      - ./frontend:/src/service_and_sales/frontend
+      - ./.git:/src/service_and_sales/.git # important for extracting info about build
+      - frontend_node_modules:/src/service_and_sales/frontend/node_modules
+    working_dir: /src/service_and_sales/frontend
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    command: yarn start
+    depends_on:
+      - backend
+      
   backend: &backend_base
     build:
       context: backend
@@ -8,17 +37,17 @@ services:
       - ./backend:/src/service_and_sales/backend
       - backend_node_modules:/src/service_and_sales/backend/node_modules
     working_dir: /src/service_and_sales/backend
-    ports:
-      - '8080:8080'
     # env_file:
       # - .env
     environment: &env_backend_base
+      PORT: 8080
       DB_DIALECT: postgres
       DB_HOST: postgres
       DB_PORT: 5432
       DB_NAME: service_and_sales
       DB_USER: admin
       DB_PASSWORD: admin_password
+      JWT_SECRET: passport
     depends_on:
       - postgres
     expose:
@@ -44,3 +73,4 @@ services:
 volumes:
   postgres_db_data:
   backend_node_modules:
+  frontend_node_modules:

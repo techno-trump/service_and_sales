@@ -11,3 +11,5 @@ sequelizeSeederStorage.json
 yarn.lock
 yarn-error.log
 node_modules/
+# cache
+frontend/cache/

@@ -1,15 +1,15 @@
-//import express from 'express';
-//import http from 'http';
 import express from 'express';
+import bodyParser from 'body-parser';
+import addRoutes from './router';
 import logger from '../logger';
-import db from '../db';
+import morgan from 'morgan';
 
 logger.info('Application started');
 
-// db.sequelize.sync({ force: true, logging: console.log });
-
 const app = express();
 
-app.get('/', (req, res) => { res.send('ok') });
+app.use(bodyParser.json());
+app.use(morgan('tiny'));
 
-app.listen(8080, () => logger.info('Listening'));
+addRoutes(app);
+app.listen(process.env.PORT, () => logger.info('Listening'));

@@ -6,6 +6,13 @@ export default {
 			login: 'system',
 			name: 'system',
 			created_at: 'NOW()'
+		},
+    {
+			login: 'admin',
+			name: 'Administrator',
+      password: 'admin',
+			created_at: 'NOW()',
+      created_by: 1
 		}], {});
   },
 

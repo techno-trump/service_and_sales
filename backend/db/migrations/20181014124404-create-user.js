@@ -7,7 +7,7 @@ const addPassHashingTrigger = async (sequelize) => {
   rawQueryStr += '$BODY$ ';
 	rawQueryStr += 'BEGIN ';
 	rawQueryStr += 'IF ((TG_OP = \'INSERT\' OR TG_OP = \'UPDATE\' AND NEW.password != OLD.password) AND NEW.password IS NOT NULL AND NEW.password != \'\')';
-	rawQueryStr += 'THEN NEW.password = crypt(NEW.password, gen_salt(\'md5\')); END IF; ';
+	rawQueryStr += 'THEN NEW.password = crypt(NEW.password, gen_salt(\'bf\')); END IF; ';
 	rawQueryStr += 'RETURN NEW; ';
 	rawQueryStr += 'END; ';
 	rawQueryStr += '$BODY$ LANGUAGE plpgsql VOLATILE';

@@ -1,0 +1,21 @@
+.layout {
+  height: 100%
+}
+
+.ui.visible.thin.left.sidebar~.fixed,
+.ui.visible.thin.left.sidebar~.pusher {
+  width: calc(100% - 150px);
+  transition-property: width, transform, -webkit-transform;
+  transition-duration: 500ms;
+}
+
+.ui.thin.left.sidebar~.fixed,
+.ui.thin.left.sidebar~.pusher {
+  width: 100%;
+  transition-property: width, transform, -webkit-transform;
+  transition-duration: 500ms;
+}
+
+.ui.bottom.attached.segment.pushable {
+  height: 100%
+}

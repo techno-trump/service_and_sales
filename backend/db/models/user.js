@@ -1,10 +1,5 @@
 'use strict';
 export default (sequelize, DataTypes) => {
-	const hooks = {
-		beforeSave: (record, options) => {
-			record.password = 'hello';
-		}
-	};
 	const fields = {
 			id: {
         allowNull: false,
@@ -59,8 +54,7 @@ export default (sequelize, DataTypes) => {
 	const config = {
 		timestamps: false,
 		underscored: true,
-		tableName: 'users',
-		hooks
+		tableName: 'users'
 	};
   const userModel = sequelize.define('User', fields, config);
   userModel.associate = function(models) {
